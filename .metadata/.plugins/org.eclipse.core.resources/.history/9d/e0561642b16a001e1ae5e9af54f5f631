@@ -1,0 +1,15 @@
+package controller.copy;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/professor")
+public class ProfessorController {
+	
+	@GetMapping("/")
+	public String dacerto() {
+		return "helol word, me livrei da maldicao, da certo please";
+	}
+}

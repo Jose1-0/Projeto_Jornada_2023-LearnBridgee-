@@ -1,0 +1,46 @@
+package com.example.demo.service;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Professor;
+import com.example.demo.repository.ProfessorRepository;
+
+@Service
+public class ProfessorService {
+    
+    @Autowired
+    private ProfessorRepository professorRepository;
+
+    public List<Professor> buscarTodos(){
+        return professorRepository.findAll();
+    }
+
+    /*aqui posso usar dois metodos, o save(), salva na memoria e depois no banco e posso ousar o save andFlush que ja faz tudo de uma vez 
+     * 
+     NAO TEM ID, CRIA UM NOVO OBJETO, TEM ID ALTERA
+
+     MARCNADO DATYA DE CRIACAO
+    */
+    public Professor inserir(Professor professor){
+        professor.setDataCriacao(new Date());
+        Professor professorNovo = professorRepository.saveAndFlush(professor);
+        return professorNovo;
+    }
+    
+    /* data de altreraçao para salvar a alteracao */
+    public Professor alterar(Professor professor){
+        professor.setDataAtualizacao(new Date());
+        return professorRepository.saveAndFlush(professor);
+    }
+
+    public void excluir(Long id){
+        Professor professor = professorRepository.findById(id).get();
+        professorRepository.delete(professor);
+    }
+
+
+}

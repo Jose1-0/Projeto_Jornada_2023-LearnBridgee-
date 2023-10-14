@@ -1,0 +1,20 @@
+package com.example.demo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@RestController
+@RequestMapping("/api")
+@Entity
+@Table(name = "professor")
+public class ProfessorController {
+	
+	@GetMapping("/")
+	public String dacerto() {
+		return "hello world,me livrei da maldiçao";
+	}
+}
