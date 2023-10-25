@@ -2,9 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,37 +14,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Professor;
-import com.example.demo.service.ProfessorService;
-
-
+import com.example.demo.entity.Permissao;
+import com.example.demo.service.PermissaoService;
 
 @RestController
-@RequestMapping("/api/professor")
-public class ProfessorController {
-
-    @Autowired
-    private ProfessorService professorService;
+@RequestMapping("/api/permissao")
+@CrossOrigin
+public class PermissaoController {
+	
+	@Autowired
+    private PermissaoService permissaoService;
 
     @GetMapping("/")
-    public List<Professor> buscarTodos(){
-        /* o retorno vem direto pois os dois retornar um estado lista */
-        return professorService.buscarTodos();
-    }
-    
-   @PostMapping("/inserir")
-    public Professor inserir(@RequestBody Professor professor){
-        return professorService.inserir(professor);
-    }
- 
-    @PutMapping("/alterar")
-    public Professor alterar(@RequestBody Professor professor){
-         return professorService.alterar(professor);
+    public List<Permissao> buscarTodos(){
+       return permissaoService.buscarTodos();
     }
 
-    @DeleteMapping("/excluir/{id}")
+    @PostMapping("/")
+    public Permissao inserir(@RequestBody Permissao objeto){
+        return permissaoService.inserir(objeto);
+    }
+
+    @PutMapping("/")
+    public Permissao alterar(@RequestBody Permissao objeto){
+        return permissaoService.alterar(objeto);
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-        professorService.excluir(id);
+        permissaoService.excluir(id);
         return ResponseEntity.ok().build();
     }
 }

@@ -15,6 +15,7 @@ public class ProfessorService {
     @Autowired
     private ProfessorRepository professorRepository;
 
+
     public List<Professor> buscarTodos(){
         return professorRepository.findAll();
     }
@@ -41,6 +42,7 @@ public class ProfessorService {
         Professor professor = professorRepository.findById(id).get();
         professorRepository.delete(professor);
     }
+
 
 
 }
