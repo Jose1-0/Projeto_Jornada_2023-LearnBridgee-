@@ -19,7 +19,7 @@ import lombok.Data;
 public class PermissaoProfessor {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne
@@ -36,6 +36,9 @@ public class PermissaoProfessor {
 	private Date data_atualizacao;
 	
 	
+	public String getAuthority() {
+		return permissao.getNome();
+	}
 	
 	public Long getId() {
 		return id;
@@ -91,10 +94,11 @@ public class PermissaoProfessor {
 
 
 
-	public void setProfessor(Professor professor2) {
-		// TODO Auto-generated method stub
-		
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
+
+
 	
 	
 }
