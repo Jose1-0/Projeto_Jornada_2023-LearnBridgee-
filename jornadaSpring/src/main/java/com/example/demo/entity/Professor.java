@@ -3,11 +3,14 @@ package com.example.demo.entity;
 import java.util.Date;
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,11 +25,14 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "professor")
+@Data
+@JsonSerialize
 
+@JsonInclude
 public class Professor {
     
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -36,8 +42,9 @@ public class Professor {
     @Column(name = "codigo_recuperacao_senha")
     private String codigoRecuperacaoSenha;
     
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @Setter(value = AccessLevel.NONE)
+    @JsonIgnore
     private List<PermissaoProfessor> permissaoProfessores;
     @Temporal(TemporalType.TIMESTAMP)
     private Date data_envio_codigo;
@@ -56,6 +63,28 @@ public class Professor {
     	}
     	this.permissaoProfessores = pp;
     }
+
+	public Professor() {
+
+	}
+	
+	public Professor(Long id, String nome, String cpf, String email, String codigoRecuperacaoSenha,
+			List<PermissaoProfessor> permissaoProfessores, Date data_envio_codigo, Date data_criacao,
+			Date data_atualizacao, String senha) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.codigoRecuperacaoSenha = codigoRecuperacaoSenha;
+		this.permissaoProfessores = permissaoProfessores;
+		this.data_envio_codigo = data_envio_codigo;
+		this.data_criacao = data_criacao;
+		this.data_atualizacao = data_atualizacao;
+		this.senha = senha;
+	}
+	
+
 	public Long getId() {
 		return id;
 	}
