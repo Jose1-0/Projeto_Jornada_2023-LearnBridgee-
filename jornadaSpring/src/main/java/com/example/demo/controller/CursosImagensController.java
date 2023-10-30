@@ -33,7 +33,8 @@ public class CursosImagensController {
     }
 
     @PostMapping("/")
-    public CursosImagens inserir(@RequestParam("idcursos") Long idcursos, @RequestParam("file") MultipartFile file){
+    public CursosImagens inserir(@RequestParam("idcursos") Long idcursos, @RequestParam("file") 
+    MultipartFile file){
         return cursosImagensService.inserir(idcursos,file);
     }
 
