@@ -72,8 +72,8 @@ public class Professor {
 	
 	public Professor(Long id, String nome, String cpf, String email, 
 	String codigoRecuperacaoSenha, 
-	List<PermissaoProfessor> permissaoProfessores, Date data_envio_codigo, Date data_criacao,
-	Date data_atualizacao, String senha) {
+	List<PermissaoProfessor> permissaoProfessores, Date data_envio_codigo, 
+	Date data_criacao, Date data_atualizacao, String senha) {
 		
 		super();
 		this.id = id;
