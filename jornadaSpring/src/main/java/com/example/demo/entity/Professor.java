@@ -42,7 +42,9 @@ public class Professor {
     @Column(name = "codigo_recuperacao_senha")
     private String codigoRecuperacaoSenha;
     
-    @OneToMany(mappedBy = "professor", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "professor", orphanRemoval = true, cascade = {CascadeType.PERSIST, 
+    CascadeType.MERGE}, fetch = FetchType.EAGER)
+	
     @Setter(value = AccessLevel.NONE)
     @JsonIgnore
     private List<PermissaoProfessor> permissaoProfessores;
